@@ -1,7 +1,5 @@
 {
   "name": "yboard-dev",
   "description": "Build and deploy full web applications on the Yboard platform",
-  "author": {
-    "name": "Yboard"
-  }
+  "version": "1.0.0"
 }

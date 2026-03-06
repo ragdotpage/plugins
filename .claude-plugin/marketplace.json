@@ -1,0 +1,18 @@
+{
+  "name": "yboard-plugins",
+  "owner": {
+    "name": "Yboard"
+  },
+  "metadata": {
+    "description": "Official Yboard plugins for Claude Code",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "yboard-dev",
+      "source": "./plugins/yboard-dev",
+      "description": "Build and deploy full web applications on the Yboard platform",
+      "version": "1.0.0"
+    }
+  ]
+}
