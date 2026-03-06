@@ -1,0 +1,8 @@
+{
+  "name": "yboard-dev",
+  "description": "Build and deploy full web applications on the Yboard platform",
+  "author": {
+    "name": "Yboard",
+    "email": "support@yboard.dev"
+  }
+}
