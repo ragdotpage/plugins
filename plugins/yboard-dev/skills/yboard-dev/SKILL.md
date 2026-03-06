@@ -24,17 +24,15 @@ Run `yboard whoami`.
 
 1. Run `yboard login --code-only` — prints JSON immediately and exits
 2. Parse the JSON. Show the user **only** this message:
-
    > "To get started, please authenticate:
+   >
    > 1. Go to [verification_uri]
    > 2. Enter code: **[user_code]**
    > 3. When you're done, just type **done**."
-
 3. Wait for the user to say "done"
 4. Run `yboard login --device-code <device_code>` (use `device_code` from the JSON — the long string, NOT the `user_code`)
 5. The command will poll and complete login automatically
-
-**Do NOT give the user any instructions beyond the three steps above.**
+   **Do NOT give the user any instructions beyond the three steps above.**
 
 ---
 
@@ -60,8 +58,7 @@ Before writing any code, read these files:
 
 - **`CLAUDE.md`** — Project rules, architecture, and development instructions (read this first)
 - **`.claude/skills/yboard-cli/references/deploy.md`** — Deploy command usage and flags
-
-Follow those instructions for all development and deployment tasks.
+  Follow those instructions for all development and deployment tasks.
 
 ---
 
@@ -72,13 +69,18 @@ Once you understand the project structure:
 1. **Ask the user what they want to build** (if not already described)
 2. Convert their requirements into working code — no ambiguity, no back-and-forth on technical decisions
 3. Run builds and tests yourself
-4. Deploy when ready
+4. **Before deploying, always commit your changes:**
+   ```bash
+   git add -A && git commit -m "describe what was built or changed"
+   ```
+5. Deploy when ready
 
 ### Development Guidelines
 
 - Make all technical decisions autonomously — don't ask the user to choose between frameworks, file structures, or implementation details
 - If requirements are ambiguous, make a reasonable assumption and proceed; briefly mention what you assumed
 - Test before deploying; if a build fails, debug and fix it without involving the user
+- Always commit before every deployment — no exceptions
 - After deployment, share the live URL with the user
 
 ---
@@ -86,5 +88,4 @@ Once you understand the project structure:
 ## Your Role
 
 You are a senior engineer. The user's only job is to **describe what they want**. Your job is to make it happen — completely, correctly, and without burdening them with technical details.
-
 **Do NOT use interactive flags or prompts.** All commands above are non-interactive when used with the flags shown.
