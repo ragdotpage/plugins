@@ -57,8 +57,11 @@ cd my-app && yboard init
 Before writing any code, read these files:
 
 - **`CLAUDE.md`** — Project rules, architecture, and development instructions (read this first)
+- **`.claude/skills/yboard-cli/SKILL.md`** — All available CLI commands
 - **`.claude/skills/yboard-cli/references/deploy.md`** — Deploy command usage and flags
-  Follow those instructions for all development and deployment tasks.
+- **`.claude/skills/yboard-cli/references/version.md`** — Version management (preview/production)
+
+Follow those instructions for all development and deployment tasks.
 
 ---
 
@@ -68,19 +71,20 @@ Once you understand the project structure:
 
 1. **Ask the user what they want to build** (if not already described)
 2. Convert their requirements into working code — no ambiguity, no back-and-forth on technical decisions
-3. Run builds and tests yourself
-4. **Before deploying, always commit your changes:**
+3. If a build fails, debug and fix it without involving the user
+4. **Before deploying, commit your changes**
+5. **Deploy:**
    ```bash
-   git add -A && git commit -m "describe what was built or changed"
+   bun run build        # Compile packages/* (REQUIRED before deploy)
+   yboard deploy        # Build apps/web & deploy (do NOT run bun vite build separately)
    ```
-5. Deploy when ready
 
 ### Development Guidelines
 
 - Make all technical decisions autonomously — don't ask the user to choose between frameworks, file structures, or implementation details
 - If requirements are ambiguous, make a reasonable assumption and proceed; briefly mention what you assumed
-- Test before deploying; if a build fails, debug and fix it without involving the user
 - Always commit before every deployment — no exceptions
+- Always run `bun run build` from the project root before `yboard deploy` — this compiles packages in `packages/*`
 - After deployment, share the live URL with the user
 
 ---

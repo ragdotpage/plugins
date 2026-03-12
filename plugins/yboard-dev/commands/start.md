@@ -70,8 +70,10 @@ Initial request: $ARGUMENTS
 
 **Actions**:
 1. Read `CLAUDE.md` — project rules, architecture, and development instructions
-2. Read `.claude/skills/yboard-cli/references/deploy.md` — deploy command usage and flags
-3. Follow those instructions for all development and deployment tasks
+2. Read `.claude/skills/yboard-cli/SKILL.md` — all available CLI commands
+3. Read `.claude/skills/yboard-cli/references/deploy.md` — deploy command usage and flags
+4. Read `.claude/skills/yboard-cli/references/version.md` — version management (preview/production)
+5. Follow those instructions for all development and deployment tasks
 
 ---
 
@@ -106,9 +108,13 @@ Initial request: $ARGUMENTS
 **Goal**: Ship it
 
 **Actions**:
-1. Run builds and tests yourself
-2. If a build fails, debug and fix it without involving the user
-3. Deploy when ready
+1. If a build fails, debug and fix it without involving the user
+2. Commit your changes before deploying
+3. Deploy:
+   ```bash
+   bun run build        # Compile packages/* (REQUIRED before deploy)
+   yboard deploy        # Build apps/web & deploy (do NOT run bun vite build separately)
+   ```
 4. Share the live URL with the user
 
 ---
