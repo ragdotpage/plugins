@@ -1,5 +1,5 @@
 ---
-description: "Build and deploy a new web application on the Yboard platform"
+description: "Build and deploy a new application on the Yboard platform"
 argument-hint: "[APP_DESCRIPTION]"
 ---
 
@@ -56,11 +56,18 @@ Initial request: $ARGUMENTS
 
 ## Phase 3: Project Setup
 
-**Goal**: Clone and initialize the project
+**Goal**: Clone and initialize the project with the right platforms
 
 **Actions**:
-1. Run `yboard setup my-app` (or use the app name from the user's description)
-2. Run `cd my-app && yboard init`
+1. Determine platforms from the user's request:
+   - **Web app / website / dashboard / SaaS** → `--platform web`
+   - **Mobile app** → `--platform mobile`
+   - **Both** → `--platform web,mobile`
+   - **Not clear** → ask the user, or default to `--platform web`
+2. Run `yboard setup my-app --platform <platforms>` (use the app name from the user's description)
+3. Run `cd my-app && yboard init`
+
+You can also add a platform later with `yboard add web` or `yboard add mobile`.
 
 ---
 
@@ -69,11 +76,14 @@ Initial request: $ARGUMENTS
 **Goal**: Learn the project architecture before writing code
 
 **Actions**:
-1. Read `CLAUDE.md` — project rules, architecture, and development instructions
+1. Read `CLAUDE.md` — project rules, architecture, platform detection, and development instructions
 2. Read `.claude/skills/yboard-cli/SKILL.md` — all available CLI commands
 3. Read `.claude/skills/yboard-cli/references/deploy.md` — deploy command usage and flags
 4. Read `.claude/skills/yboard-cli/references/version.md` — version management (preview/production)
-5. Follow those instructions for all development and deployment tasks
+5. **Check which platforms are installed:**
+   - `apps/web/` exists → web platform available
+   - `apps/native/` exists → mobile platform available
+6. Follow the platform-specific instructions in `CLAUDE.md`
 
 ---
 
@@ -101,6 +111,21 @@ Initial request: $ARGUMENTS
 3. Make technical decisions autonomously — don't ask the user to choose between frameworks, file structures, or implementation details
 4. Update todos as you progress
 
+**Platform-specific guidance:**
+
+**Web** (`apps/web/`):
+- Uses React Router v7 + TanStack DB
+- Web-only skills available: query-collections, handle-views, table-customization, create-crud-app-template
+- Do NOT use web-only skills if `apps/web/` does not exist
+
+**Mobile** (`apps/native/`):
+- Uses React Native / Expo
+- Consumes the same shared API (`packages/api/`) via remote ORPC client
+- The ORPC client (`apps/native/src/utils/query-client.ts`) points to the deployed web URL (`EXPO_PUBLIC_WEB_URL/rpc`)
+- Uses `@tanstack/react-query` directly (NOT TanStack DB)
+- Data fetching: `useQuery(orpc.{entity}.selectAll.queryOptions())`
+- For local development: `yboard dev` starts the Expo dev server
+
 ---
 
 ## Phase 7: Test & Deploy
@@ -113,9 +138,15 @@ Initial request: $ARGUMENTS
 3. Deploy:
    ```bash
    bun run build        # Compile packages/* (REQUIRED before deploy)
-   yboard deploy        # Build apps/web & deploy (do NOT run bun vite build separately)
+   yboard deploy        # Auto-detects and deploys all installed platforms
    ```
-4. Share the live URL with the user
+   To deploy a specific platform:
+   ```bash
+   yboard deploy --platform web      # Deploy web only
+   yboard deploy --platform mobile   # Deploy mobile only
+   ```
+4. **If both platforms are installed**: deploy web first (mobile depends on the web API)
+5. Share the live URL with the user
 
 ---
 

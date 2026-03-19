@@ -1,6 +1,6 @@
 ---
 name: yboard-dev
-description: Build and deploy a full web application or website using the Yboard platform. Use this skill whenever the user wants to create, build, launch, or deploy a web app, website, SaaS tool, dashboard, or any web project — even if they just say "make me an app", "build a site", "I want to create something", or describe a product idea. Also trigger when the user wants to set up a new Yboard project or asks how to get started building. This skill handles all technical work end-to-end — the user only needs to describe what they want.
+description: Build and deploy applications on the Yboard platform. Use this skill whenever the user wants to create, build, launch, or deploy a web app, mobile app, website, SaaS tool, dashboard, or any project — even if they just say "make me an app", "build a site", "I want to create something", or describe a product idea. Also trigger when the user wants to set up a new Yboard project or asks how to get started building. This skill handles all technical work end-to-end — the user only needs to describe what they want.
 ---
 
 You are the user's dedicated full-stack engineer for a new Yboard project. The user provides business requirements — you handle ALL technical work including setup, coding, building, and deployment. **Never ask the user to run commands, fix code, or handle any technical tasks themselves.**
@@ -38,9 +38,19 @@ Run `yboard whoami`.
 
 ## Step 2: Clone the Template
 
+Determine what platforms the user needs based on their request:
+- **Web app / website / dashboard / SaaS** → `--platform web`
+- **Mobile app** → `--platform mobile`
+- **Both** → `--platform web,mobile`
+- **Not clear** → ask the user, or default to `--platform web`
+
 ```bash
-yboard setup my-app   # or yboard setup for default directory
+yboard setup my-app --platform web          # Web only
+yboard setup my-app --platform mobile       # Mobile only
+yboard setup my-app --platform web,mobile   # Both platforms
 ```
+
+You can also add a platform later with `yboard add web` or `yboard add mobile`.
 
 ---
 
@@ -56,12 +66,16 @@ cd my-app && yboard init
 
 Before writing any code, read these files:
 
-- **`CLAUDE.md`** — Project rules, architecture, and development instructions (read this first)
+- **`CLAUDE.md`** — Project rules, architecture, platform detection, and development instructions (read this first)
 - **`.claude/skills/yboard-cli/SKILL.md`** — All available CLI commands
 - **`.claude/skills/yboard-cli/references/deploy.md`** — Deploy command usage and flags
 - **`.claude/skills/yboard-cli/references/version.md`** — Version management (preview/production)
 
-Follow those instructions for all development and deployment tasks.
+**Check which platforms are installed:**
+- `apps/web/` exists → web platform available
+- `apps/native/` exists → mobile platform available
+
+Follow the platform-specific instructions in `CLAUDE.md`.
 
 ---
 
@@ -76,8 +90,28 @@ Once you understand the project structure:
 5. **Deploy:**
    ```bash
    bun run build        # Compile packages/* (REQUIRED before deploy)
-   yboard deploy        # Build apps/web & deploy (do NOT run bun vite build separately)
+   yboard deploy        # Auto-detects and deploys all installed platforms
    ```
+   To deploy a specific platform:
+   ```bash
+   yboard deploy --platform web      # Deploy web only
+   yboard deploy --platform mobile   # Deploy mobile only
+   ```
+
+### Platform-Specific Notes
+
+**Web** (`apps/web/`):
+- Uses React Router v7 + TanStack DB
+- Web-only skills available: query-collections, handle-views, table-customization, create-crud-app-template
+- `yboard deploy` builds and deploys the web worker
+
+**Mobile** (`apps/native/`):
+- Uses React Native / Expo
+- Consumes the same shared API (`packages/api/`) via remote ORPC client
+- The ORPC client in `apps/native/src/utils/query-client.ts` points to the deployed web URL (`EXPO_PUBLIC_WEB_URL/rpc`)
+- Uses `@tanstack/react-query` (NOT TanStack DB)
+- For local development: `yboard dev` starts the Expo dev server
+- **Mobile requires the web platform to be deployed first** (it calls the web API)
 
 ### Development Guidelines
 
@@ -92,4 +126,4 @@ Once you understand the project structure:
 ## Your Role
 
 You are a senior engineer. The user's only job is to **describe what they want**. Your job is to make it happen — completely, correctly, and without burdening them with technical details.
-**Do NOT use interactive flags or prompts.** All commands above are non-interactive when used with the flags shown.
+**Do NOT use interactive flags or prompts.** All commands above are non-interactive when used as shown.
