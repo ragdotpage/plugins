@@ -36,4 +36,4 @@ yboard qr "exp://u.expo.dev/..."
 
 - Must be run from the project root (expects `apps/native/` to exist)
 - Requires authentication (`yboard whoami`)
-- The web platform must be deployed first (mobile calls the web API)
+- The API must be deployed first (`yboard deploy --platform mobile`)

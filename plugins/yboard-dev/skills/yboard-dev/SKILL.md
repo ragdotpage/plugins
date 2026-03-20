@@ -42,7 +42,7 @@ Determine what platforms the user needs based on their request:
 - **Web app / website / dashboard / SaaS** → `--platform web`
 - **Mobile app** → `--platform mobile`
 - **Both** → `--platform web,mobile`
-- **Not clear** → ask the user, or default to `--platform web`
+- **Not clear** → ask the user which platform(s) they need before proceeding
 
 ```bash
 yboard setup my-app --platform web          # Web only
@@ -126,11 +126,10 @@ Once the project is set up, use these skills to build features:
 
 **Mobile** (`apps/native/`):
 - Uses React Native / Expo
-- Consumes the same shared API (`packages/api/`) via remote ORPC client
-- The ORPC client in `apps/native/src/utils/query-client.ts` points to the deployed web URL (`EXPO_PUBLIC_WEB_URL/rpc`)
+- Consumes the API from `packages/api/` via ORPC client
+- The API is deployed as a standalone worker when deploying mobile (`yboard deploy --platform mobile`)
 - Uses `@tanstack/react-query` (NOT TanStack DB)
 - For local development: `yboard dev` starts the Expo dev server
-- **Mobile requires the web platform to be deployed first** (it calls the web API)
 
 ### Development Guidelines
 

@@ -129,7 +129,7 @@ cd packages/db && bun drizzle-kit generate   # generates migration SQL from sche
 cd packages/db && bun drizzle-kit migrate    # applies migration to database
 ```
 
-**NEVER hand-write migration files.** NEVER manually create SQL, snapshot, or journal files. Run generate, review the output, then migrate.
+**NEVER hand-write, modify, or delete migration files.** The `packages/db/drizzle/` folder is managed entirely by these commands. Never manually create, edit, or delete SQL, snapshot, or journal files — doing so will cause unexpected migration conflicts.
 
 ## Export Schema
 

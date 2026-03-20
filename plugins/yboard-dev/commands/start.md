@@ -63,7 +63,7 @@ Initial request: $ARGUMENTS
    - **Web app / website / dashboard / SaaS** → `--platform web`
    - **Mobile app** → `--platform mobile`
    - **Both** → `--platform web,mobile`
-   - **Not clear** → ask the user, or default to `--platform web`
+   - **Not clear** → ask the user which platform(s) they need before proceeding
 2. Run `yboard setup my-app --platform <platforms>` (use the app name from the user's description)
 3. Run `cd my-app && yboard init`
 
@@ -138,8 +138,8 @@ Use these skills to build features efficiently:
 
 **Mobile** (`apps/native/`):
 - Uses React Native / Expo
-- Consumes the same shared API (`packages/api/`) via remote ORPC client
-- The ORPC client (`apps/native/src/utils/query-client.ts`) points to the deployed web URL (`EXPO_PUBLIC_WEB_URL/rpc`)
+- Consumes the API from `packages/api/` via ORPC client
+- The API is deployed as a standalone worker when deploying mobile (`yboard deploy --platform mobile`)
 - Uses `@tanstack/react-query` directly (NOT TanStack DB)
 - Data fetching: `useQuery(orpc.{entity}.selectAll.queryOptions())`
 - For local development: `yboard dev` starts the Expo dev server
@@ -163,8 +163,7 @@ Use these skills to build features efficiently:
    yboard deploy --platform web      # Deploy web only
    yboard deploy --platform mobile   # Deploy mobile only
    ```
-4. **If both platforms are installed**: deploy web first (mobile depends on the web API)
-5. Share the live URL with the user
+4. Share the live URL with the user
 
 ---
 
