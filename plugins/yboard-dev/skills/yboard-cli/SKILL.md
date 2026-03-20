@@ -20,6 +20,7 @@ yboard secrets list                    # List secret names
 yboard secrets set                     # Set secrets (KEY=VALUE or --env-file)
 yboard secrets delete                  # Delete a secret
 yboard dev                             # Start mobile dev server (Expo)
+yboard qr <url>                        # Generate terminal QR code for a URL
 yboard deploy                          # Build & deploy (auto-detects platforms)
 yboard deploy --platform web           # Deploy web only
 yboard deploy --platform mobile        # Deploy mobile only
