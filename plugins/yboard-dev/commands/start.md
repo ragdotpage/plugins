@@ -111,6 +111,24 @@ You can also add a platform later with `yboard add web` or `yboard add mobile`.
 3. Make technical decisions autonomously — don't ask the user to choose between frameworks, file structures, or implementation details
 4. Update todos as you progress
 
+### Available Skills
+
+Use these skills to build features efficiently:
+
+- **schema-gen** — Database table schemas (Drizzle ORM)
+- **api-router** — ORPC API routers with CRUD operations
+- **create-crud-app-template** — Full CRUD feature (web only, orchestrates sub-skills)
+- **query-collections** — TanStack DB collections + forms (web only)
+- **handle-views** — Route components (web only)
+- **table-customization** — DataTable columns (web only)
+- **workflow-builder** — React Flow visual UIs (web only)
+- **ai-integration** — AI SDK + oRPC features
+- **rls-setup** — Row-level security policies (only when requested)
+- **manage-secrets** — Environment variables and secrets
+- **yboard-cli** — Deploy, version, and secrets commands
+
+> Skills marked **(web only)** require `apps/web/` to exist. Do not use them in mobile-only projects.
+
 **Platform-specific guidance:**
 
 **Web** (`apps/web/`):

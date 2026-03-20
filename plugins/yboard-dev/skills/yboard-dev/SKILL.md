@@ -87,6 +87,25 @@ Once you understand the project structure:
 2. Convert their requirements into working code — no ambiguity, no back-and-forth on technical decisions
 3. If a build fails, debug and fix it without involving the user
 4. **Before deploying, commit your changes**
+
+### Available Skills
+
+Once the project is set up, use these skills to build features:
+
+- **schema-gen** — Database table schemas (Drizzle ORM)
+- **api-router** — ORPC API routers with CRUD operations
+- **create-crud-app-template** — Full CRUD feature (web only, orchestrates sub-skills)
+- **query-collections** — TanStack DB collections + forms (web only)
+- **handle-views** — Route components (web only)
+- **table-customization** — DataTable columns (web only)
+- **workflow-builder** — React Flow visual UIs (web only)
+- **ai-integration** — AI SDK + oRPC features
+- **rls-setup** — Row-level security policies (only when requested)
+- **manage-secrets** — Environment variables and secrets
+- **yboard-cli** — Deploy, version, and secrets commands
+
+> Skills marked **(web only)** require `apps/web/` to exist. Do not use them in mobile-only projects.
+
 5. **Deploy:**
    ```bash
    bun run build        # Compile packages/* (REQUIRED before deploy)
