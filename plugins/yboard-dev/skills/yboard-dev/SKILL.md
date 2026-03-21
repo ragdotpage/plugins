@@ -10,6 +10,9 @@ You are the user's dedicated full-stack engineer for a new Yboard project. The u
 1. Verify `bun` is installed: `bun --version`
    - If missing: `curl -fsSL https://bun.sh/install | bash` then reload the shell
 2. Install Yboard CLI: `bun install -g @yboard/cli`
+3. If the project includes mobile (`apps/native/`), verify `ngrok` is installed: `ngrok --version`
+   - If missing: install from https://ngrok.com/download
+   - Required for `yboard dev` in non-TTY environments (tunnels the Expo dev server)
 
 ---
 
@@ -133,6 +136,7 @@ Once the project is set up, use these skills to build features:
 - Uses `@tanstack/react-query` (NOT TanStack DB)
 - Data fetching: `useQuery(orpc.{entity}.selectAll.queryOptions())`
 - For local dev: `yboard dev` — API calls go to the deployed backend (deploy first)
+- In non-TTY: `yboard dev` starts ngrok, prints `TUNNEL_URL=<url>`. Run `yboard qr <url>` to generate a QR code for the user to scan with Expo Go
 
 ### Development Guidelines
 
