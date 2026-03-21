@@ -145,6 +145,7 @@ Once the project is set up, use these skills to build features:
 - Always commit before every deployment — no exceptions
 - Always run `bun run build` from the project root before `yboard deploy` — this compiles packages in `packages/*`
 - After deployment, share the live URL with the user
+- **Mobile projects:** After deploying, also run `yboard dev` to start the Expo dev server. Extract the `TUNNEL_URL=` from the output and run `yboard qr <url>` to generate a QR code. Share both the deployed web URL and the QR code with the user so they can test natively via Expo Go
 
 ---
 
