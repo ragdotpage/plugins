@@ -27,17 +27,16 @@ By default, `yboard deploy` pushes the database schema before building and deplo
 
 ### Mobile (`--platform mobile`)
 1. Generates and runs database migrations (unless `--skip-db`)
-2. Builds the standalone API worker from `packages/api/src/worker.ts` (Vite)
-3. Builds shared packages
-4. Exports the Expo app for web with `EXPO_PUBLIC_*` env vars injected
-5. Runs `expo-adapter-workers` to prepare for Cloudflare
-6. Uploads static assets and deploys both the mobile app worker and the API worker
+2. Builds shared packages
+3. Exports the Expo app for web with `EXPO_PUBLIC_*` env vars injected
+4. Runs `expo-adapter-workers` to prepare for Cloudflare
+5. Builds the worker (`build-worker.ts`) — bundles both Expo static handler and API routes into a single worker
+6. Uploads static assets and deploys the worker
 
 ## Requirements
 
 - Must be run from the project root
 - Auto-detects platforms by checking for `apps/web/` and `apps/native/`
-- Mobile deploy requires `packages/api/vite.config.ts` and `packages/api/src/worker.ts`
 
 ## Typical Workflow
 

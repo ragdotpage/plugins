@@ -126,12 +126,13 @@ Once the project is set up, use these skills to build features:
 
 **Mobile** (`apps/native/`):
 - Uses React Native / Expo
-- Backend: `packages/api/src/worker.ts` — standalone API worker built with Vite, always deployed with mobile
+- Single worker serves both Expo static assets and API at `/rpc` (same pattern as web)
+- API routes mounted in `apps/native/worker.ts` via Hono + RPCHandler using `packages/api/` routers
 - ORPC client attaches session cookies from `expo-secure-store` to every request
 - Auth via `@yboard/auth-mobile` (cookie-based sealed sessions, same as web)
 - Uses `@tanstack/react-query` (NOT TanStack DB)
 - Data fetching: `useQuery(orpc.{entity}.selectAll.queryOptions())`
-- For local development: `yboard dev` starts the Expo dev server
+- For local dev: `yboard dev` — API calls go to the deployed backend (deploy first)
 
 ### Development Guidelines
 
