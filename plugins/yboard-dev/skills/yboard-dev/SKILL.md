@@ -10,9 +10,6 @@ You are the user's dedicated full-stack engineer for a new Yboard project. The u
 1. Verify `bun` is installed: `bun --version`
    - If missing: `curl -fsSL https://bun.sh/install | bash` then reload the shell
 2. Install Yboard CLI: `bun install -g @yboard/cli`
-3. If the project includes mobile (`apps/native/`), verify `ngrok` is installed: `ngrok --version`
-   - If missing: install from https://ngrok.com/download
-   - Required for `yboard dev` in non-TTY environments (tunnels the Expo dev server)
 
 ---
 
@@ -135,8 +132,8 @@ Once the project is set up, use these skills to build features:
 - Auth via `@yboard/auth-mobile` (cookie-based sealed sessions, same as web)
 - Uses `@tanstack/react-query` (NOT TanStack DB)
 - Data fetching: `useQuery(orpc.{entity}.selectAll.queryOptions())`
-- For local dev: `yboard dev` — API calls go to the deployed backend (deploy first)
-- In non-TTY: `yboard dev` starts ngrok, prints `TUNNEL_URL=<url>`. Run `yboard qr <url>` to generate a QR code for the user to scan with Expo Go
+- For local dev: `yboard dev` — API calls go to the deployed backend (deploy first). Mobile device must be on the same network.
+- `yboard dev` outputs a QR code directly — display it to the user so they can scan with Expo Go
 
 ### Development Guidelines
 
@@ -145,7 +142,7 @@ Once the project is set up, use these skills to build features:
 - Always commit before every deployment — no exceptions
 - Always run `bun run build` from the project root before `yboard deploy` — this compiles packages in `packages/*`
 - After deployment, share the live URL with the user
-- **Mobile projects:** After deploying, also run `yboard dev` to start the Expo dev server. Extract the `TUNNEL_URL=` from the output and run `yboard qr <url>` to generate a QR code. Share both the deployed web URL and the QR code with the user so they can test natively via Expo Go
+- **Mobile projects:** After deploying, run `yboard dev` to start the Expo dev server. Display the QR code output to the user so they can scan it with Expo Go. Share both the deployed web URL and the QR code.
 
 ---
 
