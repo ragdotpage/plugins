@@ -155,9 +155,9 @@ Use these skills to build features efficiently:
 **Actions**:
 1. If a build fails, debug and fix it without involving the user
 2. Commit your changes before deploying
-3. Deploy:
+3. Run diagnostics and deploy:
    ```bash
-   bun run build        # Compile packages/* (REQUIRED before deploy)
+   yboard doctor        # Check and fix configuration issues before deploying
    yboard deploy        # Auto-detects and deploys all installed platforms
    ```
    To deploy a specific platform:
@@ -165,7 +165,8 @@ Use these skills to build features efficiently:
    yboard deploy --platform web      # Deploy web only
    yboard deploy --platform mobile   # Deploy mobile only
    ```
-4. Share the live URL with the user
+4. Share the deployed URL with the user
+5. **Mobile projects:** After deploying, run `yboard dev` to start the Expo dev server. Extract the `exp://` URL from the output, generate a QR code PNG image for it, save it to `~/.yboard/mobile-qr/qr-code.png`, and display the image to the user so they can scan it with Expo Go.
 
 ---
 

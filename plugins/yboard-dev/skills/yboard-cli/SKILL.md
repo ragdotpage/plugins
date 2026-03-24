@@ -20,7 +20,7 @@ yboard secrets list                    # List secret names
 yboard secrets set                     # Set secrets (KEY=VALUE or --env-file)
 yboard secrets delete                  # Delete a secret
 yboard dev                             # Start mobile dev server (Expo)
-yboard qr <url>                        # Generate terminal QR code for a URL
+yboard doctor                          # Check deployment readiness and fix configuration issues
 yboard deploy                          # Build & deploy (auto-detects platforms)
 yboard deploy --platform web           # Deploy web only
 yboard deploy --platform mobile        # Deploy mobile only
@@ -42,8 +42,8 @@ yboard delete                          # Delete the app and all resources
 ## Typical Deployment Flow
 
 ```bash
+yboard doctor                    # Always run first — checks and fixes configuration issues
 yboard secrets set 'KEY=value'   # Set secrets (if needed)
-bun run build                    # Build packages/* (REQUIRED before deploy)
 yboard deploy                    # Auto-detects and deploys all installed platforms
 yboard deploy --platform web     # Deploy only web
 yboard deploy --platform mobile  # Deploy only mobile

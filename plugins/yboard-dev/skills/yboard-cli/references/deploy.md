@@ -41,15 +41,17 @@ By default, `yboard deploy` pushes the database schema before building and deplo
 ## Typical Workflow
 
 ```bash
+# Always run doctor before deploying to catch configuration issues:
+yboard doctor
+
 # Set secrets if needed:
 yboard secrets set 'DB_URL=postgresql://...' 'API_KEY=sk-...'
 
-# Build packages first (required — compiles packages/* before deploying):
-bun run build
-
-# Then deploy:
+# Deploy:
 yboard deploy
 ```
+
+**Important:** Always run `yboard doctor` before `yboard deploy`. The doctor command checks configuration state (database config, secrets, environment) and automatically fixes issues that would cause deployment to fail.
 
 ## Output
 
@@ -69,7 +71,7 @@ Done.
 
 ## Notes
 
-- **Always run `bun run build` from the project root before `yboard deploy`** — this compiles the packages in `packages/*`. The deploy command builds the app(s) and will fail if packages are not compiled first.
+- **Do NOT run `bun run build` before deploying** — the deploy command handles all necessary builds internally.
 - **Do NOT run `bun vite build` or `npx expo export` manually** — `yboard deploy` handles the app build step itself.
 - Deploy errors from Cloudflare are surfaced in the CLI output
 - Use `--skip-db` when you only changed frontend code and don't need a schema push
