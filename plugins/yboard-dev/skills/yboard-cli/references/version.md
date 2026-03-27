@@ -1,15 +1,15 @@
-# Yboard Version Management
+# Schema0 Version Management
 
 Manage preview and production deployments.
 
 A **preview** runs your new application code against a database branched from production, letting you test changes with the production schema before going live. If your code introduces schema changes, a migration is required before the preview is fully operational.
 
-## yboard version list
+## schema0 version list
 
 List all versions (dev deployments, previews, production).
 
 ```bash
-yboard version list
+schema0 version list
 ```
 
 **Output** (JSON when non-interactive):
@@ -27,25 +27,25 @@ yboard version list
   "previews": [
     {
       "commitHash": "abc1234",
-      "url": "https://preview--abc1234.yboard.app",
+      "url": "https://preview--abc1234.schema0.com",
       "migrationCompleted": true
     }
   ],
   "production": {
     "commitHash": "abc1234",
-    "url": "https://production--appid.yboard.app"
+    "url": "https://production--appid.schema0.com"
   }
 }
 ```
 
 ---
 
-## yboard version preview \<commitHash\>
+## schema0 version preview \<commitHash\>
 
 Create a preview environment from a dev deployment.
 
 ```bash
-yboard version preview abc1234
+schema0 version preview abc1234
 ```
 
 | Argument       | Description                              | Required |
@@ -61,7 +61,7 @@ yboard version preview abc1234
 {
   "success": true,
   "requiresMigration": false,
-  "url": "https://preview--abc1234.yboard.app"
+  "url": "https://preview--abc1234.schema0.com"
 }
 ```
 
@@ -73,12 +73,12 @@ Or if migration is required:
 
 ---
 
-## yboard version deploy \<commitHash\>
+## schema0 version deploy \<commitHash\>
 
 Deploy a preview to production.
 
 ```bash
-yboard version deploy abc1234
+schema0 version deploy abc1234
 ```
 
 | Argument       | Description                          | Required |
@@ -91,7 +91,7 @@ yboard version deploy abc1234
 **Output** (JSON):
 
 ```json
-{ "success": true, "url": "https://production--appid.yboard.app" }
+{ "success": true, "url": "https://production--appid.schema0.com" }
 ```
 
 Or if migration is required:
@@ -102,16 +102,16 @@ Or if migration is required:
 
 ---
 
-## yboard version confirm-migration \<commitHash\>
+## schema0 version confirm-migration \<commitHash\>
 
 Apply migration statements to a preview or production environment.
 
 ```bash
 # Preview migration
-yboard version confirm-migration abc1234 --statements "ALTER TABLE foo ADD COLUMN bar TEXT;" "CREATE INDEX idx_bar ON foo(bar);"
+schema0 version confirm-migration abc1234 --statements "ALTER TABLE foo ADD COLUMN bar TEXT;" "CREATE INDEX idx_bar ON foo(bar);"
 
 # Production migration
-yboard version confirm-migration abc1234 --production --statements "ALTER TABLE foo ADD COLUMN bar TEXT;"
+schema0 version confirm-migration abc1234 --production --statements "ALTER TABLE foo ADD COLUMN bar TEXT;"
 ```
 
 | Argument/Option | Description                          | Required |
@@ -137,12 +137,12 @@ Or on failure:
 
 ---
 
-## yboard version remove \<commitHash\>
+## schema0 version remove \<commitHash\>
 
 Remove a preview environment.
 
 ```bash
-yboard version remove abc1234
+schema0 version remove abc1234
 ```
 
 | Argument       | Description                          | Required |
@@ -163,19 +163,19 @@ yboard version remove abc1234
 
 ```bash
 # 1. Check current state
-yboard version list
+schema0 version list
 
 # 2. Create preview from a dev deployment
-yboard version preview abc1234
+schema0 version preview abc1234
 
 # 3. If migration required, review the schema diff and apply SQL:
-yboard version confirm-migration abc1234 --statements "ALTER TABLE ...;"
+schema0 version confirm-migration abc1234 --statements "ALTER TABLE ...;"
 
 # 4. Deploy preview to production
-yboard version deploy abc1234
+schema0 version deploy abc1234
 
 # 5. If production migration required:
-yboard version confirm-migration abc1234 --production --statements "ALTER TABLE ...;"
+schema0 version confirm-migration abc1234 --production --statements "ALTER TABLE ...;"
 ```
 
 ## Notes

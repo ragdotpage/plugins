@@ -1,10 +1,10 @@
 ---
-name: yboard-cli
-description: Yboard CLI commands for deployment, version management, and secrets management. Use when the user wants to deploy, manage versions (preview/production), or manage secrets.
+name: schema0-cli
+description: Schema0 CLI commands for deployment, version management, and secrets management. Use when the user wants to deploy, manage versions (preview/production), or manage secrets.
 allowed-tools: "Bash,Read,Glob"
 ---
 
-# Yboard CLI (Non-Interactive)
+# Schema0 CLI (Non-Interactive)
 
 CLI for managing deployment, versions, and secrets. All commands run in non-interactive mode (no TTY prompts).
 
@@ -15,51 +15,51 @@ CLI for managing deployment, versions, and secrets. All commands run in non-inte
 ## Available Commands
 
 ```bash
-yboard whoami                          # Verify authentication
-yboard secrets list                    # List secret names
-yboard secrets set                     # Set secrets (KEY=VALUE or --env-file)
-yboard secrets delete                  # Delete a secret
-yboard dev                             # Start mobile dev server (Expo)
-yboard doctor                          # Check deployment readiness and fix configuration issues
-yboard deploy                          # Build & deploy (auto-detects platforms)
-yboard deploy --platform web           # Deploy web only
-yboard deploy --platform mobile        # Deploy mobile only
-yboard deploy --platform web,mobile    # Deploy both platforms
-yboard logs                            # View deployment logs
-yboard version list                    # List all versions (dev, preview, production)
-yboard version preview <commitHash>    # Create a preview environment
-yboard version deploy <commitHash>     # Deploy a preview to production
-yboard version remove <commitHash>     # Remove a preview environment
-yboard version confirm-migration <commitHash> --statements "SQL..." # Run migration
-yboard sync                            # Move local repository to Yboard
-yboard delete                          # Delete the app and all resources
+schema0 whoami                          # Verify authentication
+schema0 secrets list                    # List secret names
+schema0 secrets set                     # Set secrets (KEY=VALUE or --env-file)
+schema0 secrets delete                  # Delete a secret
+schema0 dev                             # Start mobile dev server (Expo)
+schema0 doctor                          # Check deployment readiness and fix configuration issues
+schema0 deploy                          # Build & deploy (auto-detects platforms)
+schema0 deploy --platform web           # Deploy web only
+schema0 deploy --platform mobile        # Deploy mobile only
+schema0 deploy --platform web,mobile    # Deploy both platforms
+schema0 logs                            # View deployment logs
+schema0 version list                    # List all versions (dev, preview, production)
+schema0 version preview <commitHash>    # Create a preview environment
+schema0 version deploy <commitHash>     # Deploy a preview to production
+schema0 version remove <commitHash>     # Remove a preview environment
+schema0 version confirm-migration <commitHash> --statements "SQL..." # Run migration
+schema0 sync                            # Move local repository to Schema0
+schema0 delete                          # Delete the app and all resources
 ```
 
 ## Sync
 
-`yboard sync` transfers your local repository to Yboard's platform. All branches and history are uploaded. Any previous work on Yboard for this app will be replaced. After syncing, the app is accessible on the Yboard dashboard.
+`schema0 sync` transfers your local repository to Schema0's platform. All branches and history are uploaded. Any previous work on Schema0 for this app will be replaced. After syncing, the app is accessible on the Schema0 dashboard.
 
 ## Typical Deployment Flow
 
 ```bash
-yboard doctor                    # Always run first — checks and fixes configuration issues
-yboard secrets set 'KEY=value'   # Set secrets (if needed)
-yboard deploy                    # Auto-detects and deploys all installed platforms
-yboard deploy --platform web     # Deploy only web
-yboard deploy --platform mobile  # Deploy only mobile
+schema0 doctor                    # Always run first — checks and fixes configuration issues
+schema0 secrets set 'KEY=value'   # Set secrets (if needed)
+schema0 deploy                    # Auto-detects and deploys all installed platforms
+schema0 deploy --platform web     # Deploy only web
+schema0 deploy --platform mobile  # Deploy only mobile
 ```
 
 ## Version Management Flow
 
 ```bash
-yboard version list                                    # Check current state
-yboard version preview <commitHash>                    # Create preview from a dev deployment
+schema0 version list                                    # Check current state
+schema0 version preview <commitHash>                    # Create preview from a dev deployment
 # If migration required, output includes schemaDiff — write SQL based on it:
-yboard version confirm-migration <commitHash> --statements "ALTER TABLE ...;" "CREATE INDEX ...;"
-yboard version deploy <commitHash>                     # Promote preview to production
+schema0 version confirm-migration <commitHash> --statements "ALTER TABLE ...;" "CREATE INDEX ...;"
+schema0 version deploy <commitHash>                     # Promote preview to production
 # If production migration required:
-yboard version confirm-migration <commitHash> --production --statements "ALTER TABLE ...;"
-yboard version remove <commitHash>                     # Clean up preview
+schema0 version confirm-migration <commitHash> --production --statements "ALTER TABLE ...;"
+schema0 version remove <commitHash>                     # Clean up preview
 ```
 
 See command references in `references/`:

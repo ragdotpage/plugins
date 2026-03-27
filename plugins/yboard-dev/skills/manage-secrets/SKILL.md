@@ -4,7 +4,7 @@ description: Add and manage application secrets and environment variables. Use w
 allowed-tools: "Read,Write,Edit,Glob,Grep"
 ---
 
-> **Prerequisite:** This skill requires a yboard template project. Before using, ensure `CLAUDE.md` exists in the project root and read it for project rules and conventions.
+> **Prerequisite:** This skill requires a schema0 template project. Before using, ensure `CLAUDE.md` exists in the project root and read it for project rules and conventions.
 
 
 # Manage Secrets & Backend Integration
@@ -117,13 +117,13 @@ When you need to add a new secret (like an API key for a third-party service):
 
 ## Secret Injection
 
-Secrets are injected at deploy time (not build time) and must never be committed to git. All secret operations are managed through the yboard CLI:
+Secrets are injected at deploy time (not build time) and must never be committed to git. All secret operations are managed through the schema0 CLI:
 
 ```bash
-yboard secrets set SECRET_NAME=value
-yboard secrets set --env-file .env.production
-yboard secrets list
-yboard secrets delete SECRET_NAME
+schema0 secrets set SECRET_NAME=value
+schema0 secrets set --env-file .env.production
+schema0 secrets list
+schema0 secrets delete SECRET_NAME
 ```
 
 ## Type Safety

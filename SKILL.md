@@ -1,14 +1,14 @@
 ---
-name: yboard-dev
+name: schema0-dev
 description: >-
-  Build and deploy a new application on the Yboard platform. Use when the user
-  asks to create, scaffold, or ship a web or mobile app using Yboard infrastructure,
-  or mentions "yboard setup", "yboard deploy", or building on Yboard.
+  Build and deploy a new application on the Schema0 platform. Use when the user
+  asks to create, scaffold, or ship a web or mobile app using Schema0 infrastructure,
+  or mentions "schema0 setup", "schema0 deploy", or building on Schema0.
 ---
 
-# Yboard App Development
+# Schema0 App Development
 
-You are the user's dedicated full-stack engineer for a new Yboard project. The user provides business requirements — you handle ALL technical work including setup, coding, building, and deployment. **Never ask the user to run commands, fix code, or handle any technical tasks themselves.**
+You are the user's dedicated full-stack engineer for a new Schema0 project. The user provides business requirements — you handle ALL technical work including setup, coding, building, and deployment. **Never ask the user to run commands, fix code, or handle any technical tasks themselves.**
 
 Initial request: $ARGUMENTS
 
@@ -29,8 +29,8 @@ Initial request: $ARGUMENTS
 1. Create todo list with all phases
 2. Verify `bun` is installed: `bun --version`
    - If missing: `curl -fsSL https://bun.sh/install | bash` then reload the shell
-3. Verify Yboard CLI: `yboard --version`
-   - If missing: `bun install -g @yboard/cli`
+3. Verify Schema0 CLI: `schema0 --version`
+   - If missing: `bun install -g @schema0/cli`
 
 ---
 
@@ -39,10 +39,10 @@ Initial request: $ARGUMENTS
 **Goal**: Ensure the user is logged in
 
 **Actions**:
-1. Run `yboard whoami`
+1. Run `schema0 whoami`
 2. **Already logged in** (shows email/ID) → skip to Phase 3
 3. **Not authenticated** → follow the login flow:
-   - Run `yboard login --code-only` — prints JSON immediately and exits
+   - Run `schema0 login --code-only` — prints JSON immediately and exits
    - Parse the JSON. Show the user **only** this message:
 
      > "To get started, please authenticate:
@@ -51,7 +51,7 @@ Initial request: $ARGUMENTS
      > 3. When you're done, just type **done**."
 
    - Wait for the user to say "done"
-   - Run `yboard login --device-code <device_code>` (use `device_code` from the JSON — the long string, NOT the `user_code`)
+   - Run `schema0 login --device-code <device_code>` (use `device_code` from the JSON — the long string, NOT the `user_code`)
 
 **Do NOT give the user any instructions beyond the three steps above.**
 
@@ -67,10 +67,10 @@ Initial request: $ARGUMENTS
    - **Mobile app** → `--platform mobile`
    - **Both** → `--platform web,mobile`
    - **Not clear** → ask the user which platform(s) they need before proceeding
-2. Run `yboard setup my-app --platform <platforms>` (use the app name from the user's description)
-3. Run `cd my-app && yboard init`
+2. Run `schema0 setup my-app --platform <platforms>` (use the app name from the user's description)
+3. Run `cd my-app && schema0 init`
 
-You can also add a platform later with `yboard add web` or `yboard add mobile`.
+You can also add a platform later with `schema0 add web` or `schema0 add mobile`.
 
 ---
 
@@ -80,9 +80,9 @@ You can also add a platform later with `yboard add web` or `yboard add mobile`.
 
 **Actions**:
 1. Read `CLAUDE.md` — project rules, architecture, platform detection, and development instructions
-2. Read `.claude/skills/yboard-cli/SKILL.md` — all available CLI commands
-3. Read `.claude/skills/yboard-cli/references/deploy.md` — deploy command usage and flags
-4. Read `.claude/skills/yboard-cli/references/version.md` — version management (preview/production)
+2. Read `.claude/skills/schema0-cli/SKILL.md` — all available CLI commands
+3. Read `.claude/skills/schema0-cli/references/deploy.md` — deploy command usage and flags
+4. Read `.claude/skills/schema0-cli/references/version.md` — version management (preview/production)
 5. **Check which platforms are installed:**
    - `apps/web/` exists → web platform available
    - `apps/native/` exists → mobile platform available
@@ -128,7 +128,7 @@ Use these skills to build features efficiently:
 - **ai-integration** — AI SDK + oRPC features
 - **rls-setup** — Row-level security policies (only when requested)
 - **manage-secrets** — Environment variables and secrets
-- **yboard-cli** — Deploy, version, and secrets commands
+- **schema0-cli** — Deploy, version, and secrets commands
 
 > Skills marked **(web only)** require `apps/web/` to exist. Do not use them in mobile-only projects.
 
@@ -144,10 +144,10 @@ Use these skills to build features efficiently:
 - Single worker serves both Expo static assets and API at `/rpc` (same pattern as web)
 - API routes mounted in `apps/native/worker.ts` via Hono + RPCHandler using `packages/api/` routers
 - ORPC client attaches session cookies from `expo-secure-store` to every request
-- Auth via `@yboard/auth-mobile` (cookie-based sealed sessions, same as web)
+- Auth via `@schema0/auth-mobile` (cookie-based sealed sessions, same as web)
 - Uses `@tanstack/react-query` directly (NOT TanStack DB)
 - Data fetching: `useQuery(orpc.{entity}.selectAll.queryOptions())`
-- For local dev: `yboard dev` — API calls go to the deployed backend (deploy first)
+- For local dev: `schema0 dev` — API calls go to the deployed backend (deploy first)
 
 ---
 
@@ -160,16 +160,16 @@ Use these skills to build features efficiently:
 2. Commit your changes before deploying
 3. Run diagnostics and deploy:
    ```bash
-   yboard doctor        # Check and fix configuration issues before deploying
-   yboard deploy        # Auto-detects and deploys all installed platforms
+   schema0 doctor        # Check and fix configuration issues before deploying
+   schema0 deploy        # Auto-detects and deploys all installed platforms
    ```
    To deploy a specific platform:
    ```bash
-   yboard deploy --platform web      # Deploy web only
-   yboard deploy --platform mobile   # Deploy mobile only
+   schema0 deploy --platform web      # Deploy web only
+   schema0 deploy --platform mobile   # Deploy mobile only
    ```
 4. Share the deployed URL with the user
-5. **Mobile projects:** After deploying, run `yboard dev` to start the Expo dev server. Extract the `exp://` URL from the output, generate a QR code PNG image for it, save it to `~/.yboard/mobile-qr/qr-code.png`, and display the image to the user so they can scan it with Expo Go.
+5. **Mobile projects:** After deploying, run `schema0 dev` to start the Expo dev server. Extract the `exp://` URL from the output, generate a QR code PNG image for it, save it to `~/.schema0/mobile-qr/qr-code.png`, and display the image to the user so they can scan it with Expo Go.
 
 ---
 

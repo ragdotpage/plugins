@@ -5,7 +5,7 @@ allowed-tools: "Read,Write,Edit,Glob,Grep,Bash"
 allowed-commands: ["bunx oxlint *"]
 ---
 
-> **Prerequisite:** This skill requires a yboard template project. Before using, ensure `CLAUDE.md` exists in the project root and read it for project rules and conventions.
+> **Prerequisite:** This skill requires a schema0 template project. Before using, ensure `CLAUDE.md` exists in the project root and read it for project rules and conventions.
 
 
 # Query Collections Generator
