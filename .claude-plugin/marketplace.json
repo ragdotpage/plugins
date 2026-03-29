@@ -1,17 +1,17 @@
 {
-  "name": "yboard-plugins",
+  "name": "schem0-plugins",
   "owner": {
-    "name": "Yboard"
+    "name": "Schema0"
   },
   "metadata": {
-    "description": "Official Yboard plugins for Claude Code",
+    "description": "Official Schema0 plugins for Claude Code",
     "pluginRoot": "./plugins"
   },
   "plugins": [
     {
-      "name": "yboard-dev",
-      "source": "./plugins/yboard-dev",
-      "description": "Build and deploy full web applications on the Yboard platform",
+      "name": "schema0-dev",
+      "source": "./plugins/schema0-dev",
+      "description": "Build and deploy full web applications on the Schema0 platform",
       "version": "1.0.0"
     }
   ]
