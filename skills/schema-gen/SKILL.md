@@ -6,7 +6,6 @@ allowed-tools: "Read,Write,Edit,Glob,Grep"
 
 > **Prerequisite:** This skill requires a schema0 template project. Before using, ensure `CLAUDE.md` exists in the project root and read it for project rules and conventions.
 
-
 # Schema Generator
 
 Create database table schemas with Drizzle ORM and drizzle-zod derived schemas.

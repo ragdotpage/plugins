@@ -1,5 +1,3 @@
-# Schema Relations Reference
-
 Patterns for foreign keys, type-safe relations, and junction tables.
 
 ## Foreign Keys (`.references()`)
