@@ -1,9 +1,6 @@
 ---
-name: schema0-dev
-description: >-
-  Build and deploy a new application on the Schema0 platform. Use when the user
-  asks to create, scaffold, or ship a web or mobile app using Schema0 infrastructure,
-  or mentions "schema0 setup", "schema0 deploy", or building on Schema0.
+description: "Build and deploy a new application on the Schema0 platform"
+argument-hint: "[APP_DESCRIPTION]"
 ---
 
 # Schema0 App Development
@@ -26,6 +23,7 @@ Initial request: $ARGUMENTS
 **Goal**: Ensure tooling is ready
 
 **Actions**:
+
 1. Create todo list with all phases
 2. Verify `bun` is installed: `bun --version`
    - If missing: `curl -fsSL https://bun.sh/install | bash` then reload the shell
@@ -39,6 +37,7 @@ Initial request: $ARGUMENTS
 **Goal**: Ensure the user is logged in
 
 **Actions**:
+
 1. Run `schema0 whoami`
 2. **Already logged in** (shows email/ID) → skip to Phase 3
 3. **Not authenticated** → follow the login flow:
@@ -46,6 +45,7 @@ Initial request: $ARGUMENTS
    - Parse the JSON. Show the user **only** this message:
 
      > "To get started, please authenticate:
+     >
      > 1. Go to [verification_uri]
      > 2. Enter code: **[user_code]**
      > 3. When you're done, just type **done**."
@@ -62,6 +62,7 @@ Initial request: $ARGUMENTS
 **Goal**: Clone and initialize the project with the right platforms
 
 **Actions**:
+
 1. Determine platforms from the user's request:
    - **Web app / website / dashboard / SaaS** → `--platform web`
    - **Mobile app** → `--platform mobile`
@@ -79,6 +80,7 @@ You can also add a platform later with `schema0 add web` or `schema0 add mobile`
 **Goal**: Learn the project architecture before writing code
 
 **Actions**:
+
 1. Read `CLAUDE.md` — project rules, architecture, platform detection, and development instructions
 2. Read `.claude/skills/schema0-cli/SKILL.md` — all available CLI commands
 3. Read `.claude/skills/schema0-cli/references/deploy.md` — deploy command usage and flags
@@ -95,6 +97,7 @@ You can also add a platform later with `schema0 add web` or `schema0 add mobile`
 **Goal**: Understand what the user wants to build
 
 **Actions**:
+
 1. If the user already described what they want, summarize your understanding and confirm
 2. If unclear, ask:
    - What should the app do?
@@ -109,6 +112,7 @@ You can also add a platform later with `schema0 add web` or `schema0 add mobile`
 **Goal**: Implement the application
 
 **Actions**:
+
 1. Convert requirements into working code
 2. Follow all project conventions from CLAUDE.md
 3. Make technical decisions autonomously — don't ask the user to choose between frameworks, file structures, or implementation details
@@ -135,11 +139,13 @@ Use these skills to build features efficiently:
 **Platform-specific guidance:**
 
 **Web** (`apps/web/`):
+
 - Uses React Router v7 + TanStack DB
 - Web-only skills available: query-collections, handle-views, table-customization, create-crud-app-template
 - Do NOT use web-only skills if `apps/web/` does not exist
 
 **Mobile** (`apps/native/`):
+
 - Uses React Native / Expo
 - Single worker serves both Expo static assets and API at `/rpc` (same pattern as web)
 - API routes mounted in `apps/native/worker.ts` via Hono + RPCHandler using `packages/api/` routers
@@ -156,6 +162,7 @@ Use these skills to build features efficiently:
 **Goal**: Ship it
 
 **Actions**:
+
 1. If a build fails, debug and fix it without involving the user
 2. Commit your changes before deploying
 3. Run diagnostics and deploy:
@@ -178,6 +185,7 @@ Use these skills to build features efficiently:
 **Goal**: Hand off to the user
 
 **Actions**:
+
 1. Mark all todos complete
 2. Share the live URL
 3. Summarize what was built, key decisions made, and suggested next steps
