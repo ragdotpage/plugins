@@ -2,12 +2,12 @@
 
 Authentication is handled automatically by the environment.
 
-## schema0 whoami
+## bun schema0 whoami
 
 Show the currently authenticated identity.
 
 ```bash
-schema0 whoami
+bun schema0 whoami
 ```
 
 **Authentication**: Automatic.
@@ -18,7 +18,7 @@ schema0 whoami
 **Output**:
 
 ```
-schema0 whoami
+bun schema0 whoami
 Fetching user info...
 User info retrieved.
 Org: org_abc123

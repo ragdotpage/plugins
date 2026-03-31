@@ -15,51 +15,51 @@ CLI for managing deployment, versions, and secrets. All commands run in non-inte
 ## Available Commands
 
 ```bash
-schema0 whoami                          # Verify authentication
-schema0 secrets list                    # List secret names
-schema0 secrets set                     # Set secrets (KEY=VALUE or --env-file)
-schema0 secrets delete                  # Delete a secret
-schema0 dev                             # Start mobile dev server (Expo)
-schema0 doctor                          # Check deployment readiness and fix configuration issues
-schema0 deploy                          # Build & deploy (auto-detects platforms)
-schema0 deploy --platform web           # Deploy web only
-schema0 deploy --platform mobile        # Deploy mobile only
-schema0 deploy --platform web,mobile    # Deploy both platforms
-schema0 logs                            # View deployment logs
-schema0 version list                    # List all versions (dev, preview, production)
-schema0 version preview <commitHash>    # Create a preview environment
-schema0 version deploy <commitHash>     # Deploy a preview to production
-schema0 version remove <commitHash>     # Remove a preview environment
-schema0 version confirm-migration <commitHash> --statements "SQL..." # Run migration
-schema0 sync                            # Move local repository to Schema0
-schema0 delete                          # Delete the app and all resources
+bun schema0 whoami                          # Verify authentication
+bun schema0 secrets list                    # List secret names
+bun schema0 secrets set                     # Set secrets (KEY=VALUE or --env-file)
+bun schema0 secrets delete                  # Delete a secret
+bun schema0 dev                             # Start mobile dev server (Expo)
+bun schema0 doctor                          # Check deployment readiness and fix configuration issues
+bun schema0 deploy                          # Build & deploy (auto-detects platforms)
+bun schema0 deploy --platform web           # Deploy web only
+bun schema0 deploy --platform mobile        # Deploy mobile only
+bun schema0 deploy --platform web,mobile    # Deploy both platforms
+bun schema0 logs                            # View deployment logs
+bun schema0 version list                    # List all versions (dev, preview, production)
+bun schema0 version preview <commitHash>    # Create a preview environment
+bun schema0 version deploy <commitHash>     # Deploy a preview to production
+bun schema0 version remove <commitHash>     # Remove a preview environment
+bun schema0 version confirm-migration <commitHash> --statements "SQL..." # Run migration
+bun schema0 sync                            # Move local repository to Schema0
+bun schema0 delete                          # Delete the app and all resources
 ```
 
 ## Sync
 
-`schema0 sync` transfers your local repository to Schema0's platform. All branches and history are uploaded. Any previous work on Schema0 for this app will be replaced. After syncing, the app is accessible on the Schema0 dashboard.
+`bun schema0 sync` transfers your local repository to Schema0's platform. All branches and history are uploaded. Any previous work on Schema0 for this app will be replaced. After syncing, the app is accessible on the Schema0 dashboard.
 
 ## Typical Deployment Flow
 
 ```bash
-schema0 doctor                    # Always run first — checks and fixes configuration issues
-schema0 secrets set 'KEY=value'   # Set secrets (if needed)
-schema0 deploy                    # Auto-detects and deploys all installed platforms
-schema0 deploy --platform web     # Deploy only web
-schema0 deploy --platform mobile  # Deploy only mobile
+bun schema0 doctor                    # Always run first — checks and fixes configuration issues
+bun schema0 secrets set 'KEY=value'   # Set secrets (if needed)
+bun schema0 deploy                    # Auto-detects and deploys all installed platforms
+bun schema0 deploy --platform web     # Deploy only web
+bun schema0 deploy --platform mobile  # Deploy only mobile
 ```
 
 ## Version Management Flow
 
 ```bash
-schema0 version list                                    # Check current state
-schema0 version preview <commitHash>                    # Create preview from a dev deployment
+bun schema0 version list                                    # Check current state
+bun schema0 version preview <commitHash>                    # Create preview from a dev deployment
 # If migration required, output includes schemaDiff — write SQL based on it:
-schema0 version confirm-migration <commitHash> --statements "ALTER TABLE ...;" "CREATE INDEX ...;"
-schema0 version deploy <commitHash>                     # Promote preview to production
+bun schema0 version confirm-migration <commitHash> --statements "ALTER TABLE ...;" "CREATE INDEX ...;"
+bun schema0 version deploy <commitHash>                     # Promote preview to production
 # If production migration required:
-schema0 version confirm-migration <commitHash> --production --statements "ALTER TABLE ...;"
-schema0 version remove <commitHash>                     # Clean up preview
+bun schema0 version confirm-migration <commitHash> --production --statements "ALTER TABLE ...;"
+bun schema0 version remove <commitHash>                     # Clean up preview
 ```
 
 See command references in `references/`:

@@ -4,12 +4,12 @@ Manage preview and production deployments.
 
 A **preview** runs your new application code against a database branched from production, letting you test changes with the production schema before going live. If your code introduces schema changes, a migration is required before the preview is fully operational.
 
-## schema0 version list
+## bun schema0 version list
 
 List all versions (dev deployments, previews, production).
 
 ```bash
-schema0 version list
+bun schema0 version list
 ```
 
 **Output** (JSON when non-interactive):
@@ -40,12 +40,12 @@ schema0 version list
 
 ---
 
-## schema0 version preview \<commitHash\>
+## bun schema0 version preview \<commitHash\>
 
 Create a preview environment from a dev deployment.
 
 ```bash
-schema0 version preview abc1234
+bun schema0 version preview abc1234
 ```
 
 | Argument       | Description                              | Required |
@@ -73,12 +73,12 @@ Or if migration is required:
 
 ---
 
-## schema0 version deploy \<commitHash\>
+## bun schema0 version deploy \<commitHash\>
 
 Deploy a preview to production.
 
 ```bash
-schema0 version deploy abc1234
+bun schema0 version deploy abc1234
 ```
 
 | Argument       | Description                          | Required |
@@ -102,16 +102,16 @@ Or if migration is required:
 
 ---
 
-## schema0 version confirm-migration \<commitHash\>
+## bun schema0 version confirm-migration \<commitHash\>
 
 Apply migration statements to a preview or production environment.
 
 ```bash
 # Preview migration
-schema0 version confirm-migration abc1234 --statements "ALTER TABLE foo ADD COLUMN bar TEXT;" "CREATE INDEX idx_bar ON foo(bar);"
+bun schema0 version confirm-migration abc1234 --statements "ALTER TABLE foo ADD COLUMN bar TEXT;" "CREATE INDEX idx_bar ON foo(bar);"
 
 # Production migration
-schema0 version confirm-migration abc1234 --production --statements "ALTER TABLE foo ADD COLUMN bar TEXT;"
+bun schema0 version confirm-migration abc1234 --production --statements "ALTER TABLE foo ADD COLUMN bar TEXT;"
 ```
 
 | Argument/Option | Description                          | Required |
@@ -137,12 +137,12 @@ Or on failure:
 
 ---
 
-## schema0 version remove \<commitHash\>
+## bun schema0 version remove \<commitHash\>
 
 Remove a preview environment.
 
 ```bash
-schema0 version remove abc1234
+bun schema0 version remove abc1234
 ```
 
 | Argument       | Description                          | Required |
@@ -163,19 +163,19 @@ schema0 version remove abc1234
 
 ```bash
 # 1. Check current state
-schema0 version list
+bun schema0 version list
 
 # 2. Create preview from a dev deployment
-schema0 version preview abc1234
+bun schema0 version preview abc1234
 
 # 3. If migration required, review the schema diff and apply SQL:
-schema0 version confirm-migration abc1234 --statements "ALTER TABLE ...;"
+bun schema0 version confirm-migration abc1234 --statements "ALTER TABLE ...;"
 
 # 4. Deploy preview to production
-schema0 version deploy abc1234
+bun schema0 version deploy abc1234
 
 # 5. If production migration required:
-schema0 version confirm-migration abc1234 --production --statements "ALTER TABLE ...;"
+bun schema0 version confirm-migration abc1234 --production --statements "ALTER TABLE ...;"
 ```
 
 ## Notes

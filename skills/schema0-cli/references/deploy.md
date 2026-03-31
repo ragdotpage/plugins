@@ -1,11 +1,11 @@
-# schema0 deploy
+# bun schema0 deploy
 
 Build and deploy the application.
 
 ## Syntax
 
 ```bash
-schema0 deploy [options]
+bun schema0 deploy [options]
 ```
 
 ## Options
@@ -15,7 +15,7 @@ schema0 deploy [options]
 | `--skip-db`  | Skip database schema push                                     |
 | `--platform` | Deploy specific platform(s): `web`, `mobile`, or `web,mobile` |
 
-By default, `schema0 deploy` pushes the database schema before building and deploying. Use `--skip-db` to skip the schema push (e.g., when only frontend code changed).
+By default, `bun schema0 deploy` pushes the database schema before building and deploying. Use `--skip-db` to skip the schema push (e.g., when only frontend code changed).
 
 ## What It Does
 
@@ -42,21 +42,21 @@ By default, `schema0 deploy` pushes the database schema before building and depl
 
 ```bash
 # Always run doctor before deploying to catch configuration issues:
-schema0 doctor
+bun schema0 doctor
 
 # Set secrets if needed:
-schema0 secrets set 'DB_URL=postgresql://...' 'API_KEY=sk-...'
+bun schema0 secrets set 'DB_URL=postgresql://...' 'API_KEY=sk-...'
 
 # Deploy:
-schema0 deploy
+bun schema0 deploy
 ```
 
-**Important:** Always run `schema0 doctor` before `schema0 deploy`. The doctor command checks configuration state (database config, secrets, environment) and automatically fixes issues that would cause deployment to fail.
+**Important:** Always run `bun schema0 doctor` before `bun schema0 deploy`. The doctor command checks configuration state (database config, secrets, environment) and automatically fixes issues that would cause deployment to fail.
 
 ## Output
 
 ```
-schema0 deploy
+bun schema0 deploy
 Fetching database URL...
 Database URL retrieved.
 Pushing database schema...
@@ -72,7 +72,7 @@ Done.
 ## Notes
 
 - **Do NOT run `bun run build` before deploying** — the deploy command handles all necessary builds internally.
-- **Do NOT run `bun vite build` or `npx expo export` manually** — `schema0 deploy` handles the app build step itself.
+- **Do NOT run `bun vite build` or `npx expo export` manually** — `bun schema0 deploy` handles the app build step itself.
 - Deploy errors from Cloudflare are surfaced in the CLI output
 - Use `--skip-db` when you only changed frontend code and don't need a schema push
 - Use `--platform` to deploy a specific platform instead of auto-detecting all installed platforms

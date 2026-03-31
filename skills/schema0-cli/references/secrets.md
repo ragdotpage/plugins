@@ -2,12 +2,12 @@
 
 Manage application secrets that are injected at deploy time. Secrets are never committed to git.
 
-## schema0 secrets list
+## bun schema0 secrets list
 
 List the names of all configured secrets.
 
 ```bash
-schema0 secrets list
+bun schema0 secrets list
 ```
 
 - Only secret **names** are shown (values are never displayed)
@@ -16,7 +16,7 @@ schema0 secrets list
 **Output**:
 
 ```
-schema0 secrets list
+bun schema0 secrets list
 Fetching secrets...
 Secrets retrieved.
 Found 2 secret(s):
@@ -27,19 +27,19 @@ Done.
 
 ---
 
-## schema0 secrets set
+## bun schema0 secrets set
 
 Set one or more secrets.
 
 ```bash
 # Set one secret
-schema0 secrets set 'API_KEY=my-secret-value'
+bun schema0 secrets set 'API_KEY=my-secret-value'
 
 # Set multiple secrets at once
-schema0 secrets set 'API_KEY=abc123' 'DB_PASSWORD=secret'
+bun schema0 secrets set 'API_KEY=abc123' 'DB_PASSWORD=secret'
 
 # Import from a .env file
-schema0 secrets set --env-file .env.production
+bun schema0 secrets set --env-file .env.production
 ```
 
 | Argument/Option         | Description                          |
@@ -56,12 +56,12 @@ schema0 secrets set --env-file .env.production
 
 ---
 
-## schema0 secrets delete
+## bun schema0 secrets delete
 
 Delete a secret.
 
 ```bash
-schema0 secrets delete <name>
+bun schema0 secrets delete <name>
 ```
 
 | Argument | Description                  | Required |
@@ -71,7 +71,7 @@ schema0 secrets delete <name>
 **Output**:
 
 ```
-schema0 secrets delete
+bun schema0 secrets delete
 Deleting secret "API_KEY"...
 Secret "API_KEY" deleted.
 Deleted secret: API_KEY
