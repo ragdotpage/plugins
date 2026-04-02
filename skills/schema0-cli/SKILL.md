@@ -33,6 +33,10 @@ bun schema0 version remove <commitHash>     # Remove a preview environment
 bun schema0 version confirm-migration <commitHash> --statements "SQL..." # Run migration
 bun schema0 sync                            # Move local repository to Schema0
 bun schema0 delete                          # Delete the app and all resources
+bun schema0 integrations connections                           # List connected platforms
+bun schema0 integrations search <platform> "<query>"           # Search actions (natural language)
+bun schema0 integrations details <systemId>                    # Get action parameters
+bun schema0 integrations execute <connKey> <path> [options]    # Execute an action
 ```
 
 ## Sync
@@ -62,9 +66,25 @@ bun schema0 version confirm-migration <commitHash> --production --statements "AL
 bun schema0 version remove <commitHash>                     # Clean up preview
 ```
 
+## Integrations Flow
+
+```bash
+bun schema0 integrations connections                                  # See connected platforms
+bun schema0 integrations search hacker-news "get top stories"         # Search actions (natural language)
+bun schema0 integrations details <systemId>                           # Get parameters and docs
+bun schema0 integrations execute <connectionKey> /v0/topstories.json --method GET --action-id <systemId>
+```
+
+- The search query is **natural language** — describe what you want to do
+- Always run `details` before `execute` to understand required parameters
+- Use `--path-params '{"key":"value"}'` for path variables like `{{itemId}}`
+- Use `--query-params '{"key":"value"}'` for query parameters
+- Use `--data '{"key":"value"}'` for request body
+
 See command references in `references/`:
 
 - [deploy.md](references/deploy.md) — `deploy`
 - [secrets.md](references/secrets.md) — `secrets list`, `secrets set`, `secrets delete`
 - [auth.md](references/auth.md) — `whoami`
 - [version.md](references/version.md) — `version list`, `version preview`, `version deploy`, `version remove`, `version confirm-migration`
+- [integrations.md](references/integrations.md) — `integrations connections`, `integrations search`, `integrations details`, `integrations execute`
