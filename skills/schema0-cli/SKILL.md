@@ -36,7 +36,7 @@ bun schema0 delete                          # Delete the app and all resources
 bun schema0 integrations connections                           # List connected platforms
 bun schema0 integrations search <platform> "<query>"           # Search actions (natural language)
 bun schema0 integrations details <systemId>                    # Get action parameters
-bun schema0 integrations execute <connKey> <path> [options]    # Execute an action
+bun schema0 integrations execute <platform> <path> [options]   # Execute an action
 ```
 
 ## Sync
@@ -72,7 +72,7 @@ bun schema0 version remove <commitHash>                     # Clean up preview
 bun schema0 integrations connections                                  # See connected platforms
 bun schema0 integrations search hacker-news "get top stories"         # Search actions (natural language)
 bun schema0 integrations details <systemId>                           # Get parameters and docs
-bun schema0 integrations execute <connectionKey> /v0/topstories.json --method GET --action-id <systemId>
+bun schema0 integrations execute hacker-news /v0/topstories.json --method GET --action-id <systemId>
 ```
 
 - The search query is **natural language** — describe what you want to do
