@@ -83,10 +83,12 @@ grep -c "test(\"create\|test(\"update\|test(\"delete" packages/test/src/{entity}
 - [ ] All 3 CRUD tests exist (create, update, delete)
 - [ ] All 3 tests pass
 
-## ⚠️ Type Safety — Zero Tolerance
+## ⚠️ Critical Rules
 
 - **NEVER use `any` type** in generated code — use proper types, generics, or `unknown` with type narrowing
 - **NEVER suppress typecheck errors** with `// @ts-ignore`, `// @ts-expect-error`, `// @ts-nocheck`, or `// eslint-disable` — fix the type error instead
+- **Use `text()` for IDs** — client-generated string IDs are required for TanStack DB optimistic updates
+- **`form.handleSubmit` MUST pass `onInvalid` callback** — `form.handleSubmit(onValid, (errors) => console.error("Form validation errors:", errors))`. Without this, zodResolver rejections are SILENT — `onSubmit` never fires, no error is shown, and tests time out with no clue why
 
 ## Error Handling
 
