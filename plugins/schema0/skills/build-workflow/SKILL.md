@@ -1,5 +1,5 @@
 ---
-name: workflow-builder
+name: build-workflow
 description: >-
   Build visual workflow, pipeline, and flow-based UIs with React Flow (@xyflow/react).
   Use for ANY request involving visual workflows, AI pipelines, node-based editors,

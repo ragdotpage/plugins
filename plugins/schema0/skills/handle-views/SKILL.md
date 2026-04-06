@@ -24,9 +24,9 @@ Create route components for listing and viewing entities.
 
 ```mermaid
 flowchart TD
-    A[schema-gen] --> B[query-collections]
+    A[create-db-schema] --> B[query-collections]
     A --> C[api-router]
-    A --> D[table-customization]
+    A --> D[customize-table]
 
     B --> E[handle-views]
     C --> E
@@ -34,21 +34,21 @@ flowchart TD
 ```
 
 **Prerequisites:** Run ALL of these skills first:
-- **schema-gen** - Database table schema
+- **create-db-schema** - Database table schema
 - **query-collections** - Collection, Dialog, Form (with inline Form Schema)
 - **api-router** - API router (with inline Insert/Update schemas)
-- **table-customization** - Columns
+- **customize-table** - Columns
 
 ## Usage Flow
 
 ```
-1. Skill("schema-gen")         → packages/db/src/schema/{entity}.ts
+1. Skill("create-db-schema")         → packages/db/src/schema/{entity}.ts
    (ALWAYS run first - base dependency)
 
 2. Then run any of these IN PARALLEL:
    - Skill("query-collections")  → Collection, Dialog, Form
    - Skill("api-router")       → packages/api/src/routers/{entity}.ts
-   - Skill("table-customization") → Columns
+   - Skill("customize-table") → Columns
 
 3. Finally:
    - Skill("handle-views")     → List Route, Detail Route

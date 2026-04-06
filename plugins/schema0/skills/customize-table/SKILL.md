@@ -1,5 +1,5 @@
 ---
-name: table-customization
+name: customize-table
 description: Customizes DataTable columns, badges, date formatting, and table display for existing entities (project)
 allowed-tools: "Read,Write,Edit,Glob,Grep"
 ---
@@ -24,14 +24,14 @@ Create and customize DataTable columns. This skill generates the `{Entity}Column
 
 ```mermaid
 flowchart TD
-    A[schema-gen] --> D[table-customization]
+    A[create-db-schema] --> D[customize-table]
 ```
 
-**Prerequisite:** Run **schema-gen** skill first to create the database schema.
+**Prerequisite:** Run **create-db-schema** skill first to create the database schema.
 
 ## Related Skills
 
-- **schema-gen** - Creates the table schema (run first)
+- **create-db-schema** - Creates the table schema (run first)
 - **query-collections** - Creates Collection, Dialog, and Form with inline Form Schema
 - **api-router** - Creates router with inline Insert/Update schemas
 - **handle-views** - Creates List Route and Detail Route

@@ -18,10 +18,10 @@ Orchestrates sub-skills to generate a complete CRUD feature. All schemas are def
 
 ```mermaid
 flowchart TD
-    A[create-crud-app-template] --> B[schema-gen]
+    A[create-crud-app-template] --> B[create-db-schema]
     B --> C[api-router]
     B --> D[query-collections]
-    B --> E[table-customization]
+    B --> E[customize-table]
     C --> F[handle-views]
     D --> F
     E --> F
@@ -31,10 +31,10 @@ flowchart TD
 
 | Skill                 | Purpose                                              |
 | --------------------- | ---------------------------------------------------- |
-| **schema-gen**        | Table + all drizzle-zod schemas                      |
+| **create-db-schema**        | Table + all drizzle-zod schemas                      |
 | **api-router**        | ORPC router (imports schemas from db)                |
 | **query-collections** | Collection, Dialog, Form (imports schemas from db)   |
-| **table-customization** | DataTable column definitions                       |
+| **customize-table** | DataTable column definitions                       |
 | **handle-views**      | List Route and Detail Route                          |
 
 ## Files Generated (10 per entity)

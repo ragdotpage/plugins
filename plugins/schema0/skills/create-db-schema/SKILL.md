@@ -1,5 +1,5 @@
 ---
-name: schema-gen
+name: create-db-schema
 description: Generates database table schema with Drizzle ORM (project)
 allowed-tools: "Read,Write,Edit,Glob,Grep"
 ---
@@ -16,13 +16,13 @@ Create at: `packages/db/src/schema/{entity}.ts`
 
 ## Dependencies
 
-**ALWAYS run schema-gen FIRST** — it creates the table and all derived schemas that other skills import.
+**ALWAYS run create-db-schema FIRST** — it creates the table and all derived schemas that other skills import.
 
 ```mermaid
 flowchart TD
-    A[schema-gen] --> B[query-collections]
+    A[create-db-schema] --> B[query-collections]
     A --> C[api-router]
-    A --> D[table-customization]
+    A --> D[customize-table]
 ```
 
 ## Pattern
@@ -154,5 +154,5 @@ For advanced patterns beyond the core 7-schema template:
 
 - **api-router** — imports insert/update schemas from this file
 - **query-collections** — imports form/select schemas from this file
-- **table-customization** — creates column definitions
+- **customize-table** — creates column definitions
 - **handle-views** — creates List and Detail routes
