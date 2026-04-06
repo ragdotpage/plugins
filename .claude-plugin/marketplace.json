@@ -6,12 +6,12 @@
   "metadata": {
     "description": "Build and deploy full-stack web and mobile applications on the Schema0 platform",
     "version": "1.0.0",
-    "pluginRoot": "."
+    "pluginRoot": "./plugins"
   },
   "plugins": [
     {
       "name": "schema0",
-      "source": ".",
+      "source": "./plugins/schema0",
       "description": "Build and deploy full-stack web and mobile applications on the Schema0 platform"
     }
   ]
