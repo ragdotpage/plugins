@@ -153,7 +153,7 @@ Use these skills to build features efficiently:
 - Auth via `@schema0/auth-mobile` (cookie-based sealed sessions, same as web)
 - Uses `@tanstack/react-query` directly (NOT TanStack DB)
 - Data fetching: `useQuery(orpc.{entity}.selectAll.queryOptions())`
-- For local dev: `schema0 dev` — starts Expo with a public tunnel URL (deploy first, then dev)
+- For local dev: `schema0 dev` — starts Expo with a public tunnel URL (deploy first, then dev). The dev server must remain running — the app launched by scanning the QR code connects to it. If the server stops, the app will lose connection.
 
 ---
 
@@ -176,7 +176,7 @@ Use these skills to build features efficiently:
    schema0 deploy --platform mobile   # Deploy mobile only
    ```
 4. Share the deployed URL with the user
-5. **Mobile projects:** After deploying, run `schema0 dev` to start the Expo dev server with a public tunnel URL. Display the QR code output to the user so they can scan it with Expo Go.
+5. **Mobile projects:** After deploying, run `schema0 dev` to start the Expo dev server with a public tunnel URL. Display the QR code output to the user so they can scan it with Expo Go. The dev server must remain running — the app launched by scanning the QR code connects to it. If the server stops, the app will lose connection.
 
 ---
 

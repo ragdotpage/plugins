@@ -14,6 +14,8 @@ Uses `node-pty` to spawn Expo with `--go` and `--tunnel` flags. The command outp
 
 The agent MUST display the QR code output to the user so they can scan it with Expo Go on their phone.
 
+**Important:** The dev server must remain running — the app launched by scanning the QR code connects to it. If the server stops, the app will lose connection.
+
 ## Requirements
 
 - Must be run from the project root (expects `apps/native/` to exist)

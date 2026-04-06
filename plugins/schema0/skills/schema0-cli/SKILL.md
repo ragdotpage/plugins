@@ -19,7 +19,7 @@ bun schema0 whoami                          # Verify authentication
 bun schema0 secrets list                    # List secret names
 bun schema0 secrets set                     # Set secrets (KEY=VALUE or --env-file)
 bun schema0 secrets delete                  # Delete a secret
-bun schema0 dev                             # Start mobile dev server (Expo)
+bun schema0 dev                             # Start mobile dev server (Expo) — server must remain running
 bun schema0 doctor                          # Check deployment readiness and fix configuration issues
 bun schema0 deploy                          # Build & deploy (auto-detects platforms)
 bun schema0 deploy --platform web           # Deploy web only
